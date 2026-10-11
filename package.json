@@ -1,0 +1,31 @@
+{
+  "name": "@godtech-ctl-create/abe-techlab-design-system",
+  "version": "0.1.0",
+  "description": "Shared CSS design tokens and theme palettes for ABE TechLab products.",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "styles",
+    "README.md",
+    "LICENSE",
+    "NOTICE.md",
+    "docs"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    "./styles.css": "./styles/index.css",
+    "./styles/*": "./styles/*"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "keywords": [
+    "abe-techlab",
+    "design-system",
+    "tailwindcss",
+    "themes",
+    "design-tokens"
+  ]
+}
