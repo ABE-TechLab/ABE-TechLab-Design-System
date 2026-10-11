@@ -16,7 +16,12 @@
   ],
   "exports": {
     "./styles.css": "./styles/index.css",
-    "./styles/*": "./styles/*"
+    "./styles/*": "./styles/*",
+    "./themes.json": "./styles/themes.json"
+  },
+  "scripts": {
+    "check": "node scripts/check-themes.mjs",
+    "prepack": "npm run check"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
