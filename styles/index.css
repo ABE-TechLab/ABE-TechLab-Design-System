@@ -1,0 +1,12 @@
+/* ABE TechLab Design System — theme palette entry point.
+   Import after Tailwind CSS in the consuming app's global stylesheet. */
+@import './themes/claude.css';
+@import './themes/discord.css';
+@import './themes/supabase.css';
+@import './themes/vercel.css';
+@import './themes/mono.css';
+@import './themes/notebook.css';
+@import './themes/light-green.css';
+@import './themes/zen.css';
+@import './themes/astro-vista.css';
+@import './themes/whatsapp.css';
