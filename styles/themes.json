@@ -1,0 +1,82 @@
+[
+  {
+    "id": "claude",
+    "name": "Claude",
+    "modes": [
+      "light",
+      "dark"
+    ]
+  },
+  {
+    "id": "discord",
+    "name": "Discord",
+    "modes": [
+      "light",
+      "dark"
+    ]
+  },
+  {
+    "id": "supabase",
+    "name": "Supabase",
+    "modes": [
+      "light",
+      "dark"
+    ]
+  },
+  {
+    "id": "vercel",
+    "name": "Vercel",
+    "modes": [
+      "light",
+      "dark"
+    ]
+  },
+  {
+    "id": "mono",
+    "name": "Mono",
+    "modes": [
+      "light",
+      "dark"
+    ]
+  },
+  {
+    "id": "notebook",
+    "name": "Notebook",
+    "modes": [
+      "light",
+      "dark"
+    ]
+  },
+  {
+    "id": "light-green",
+    "name": "Light Green",
+    "modes": [
+      "light",
+      "dark"
+    ]
+  },
+  {
+    "id": "zen",
+    "name": "Zen",
+    "modes": [
+      "light",
+      "dark"
+    ]
+  },
+  {
+    "id": "astro-vista",
+    "name": "Astro Vista",
+    "modes": [
+      "light",
+      "dark"
+    ]
+  },
+  {
+    "id": "whatsapp",
+    "name": "WhatsApp",
+    "modes": [
+      "light",
+      "dark"
+    ]
+  }
+]
