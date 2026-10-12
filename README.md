@@ -36,14 +36,14 @@ The source package is in active development. Its first version is configured for
 
 ## Install
 
-This package is private and intended to be distributed through GitHub Packages.
+The source repository is public. GitHub Packages package visibility is configured separately, so only publish after deciding whether the package itself should be public or restricted to ABE TechLab consumers.
 
 1. Configure the consuming repository's `.npmrc` as described in [Installation](./docs/installation.md).
 2. Make `GITHUB_PACKAGES_TOKEN` available to the local environment and Vercel build environment. Never commit a real token.
 3. Install a pinned version after it has been published:
 
 ```bash
-npm install @godtech-ctl-create/abe-techlab-design-system@0.1.0
+npm install @abe-techlab/abe-techlab-design-system@0.1.0
 ```
 
 ## Import the styles
@@ -52,7 +52,7 @@ For Tailwind CSS v4 applications:
 
 ```css
 @import 'tailwindcss';
-@import '@godtech-ctl-create/abe-techlab-design-system/styles.css';
+@import '@abe-techlab/abe-techlab-design-system/styles.css';
 ```
 
 Set `data-theme` on the root HTML element, for example `data-theme="vercel"`. To activate a palette's dark values, also apply the `dark` class to the root element. Use a valid ID from [the theme catalog](./styles/themes.json).
@@ -65,7 +65,7 @@ The React entry point has no dependency on shadcn, Base UI, or a particular styl
 import {
   ActiveThemeProvider,
   ThemeSelector
-} from '@godtech-ctl-create/abe-techlab-design-system/react';
+} from '@abe-techlab/abe-techlab-design-system/react';
 
 export function ThemeSettings() {
   return (
@@ -78,14 +78,14 @@ export function ThemeSettings() {
 
 `ActiveThemeProvider` manages the `data-theme` attribute and stores the chosen palette. Its default persistence is a cookie named `active_theme`, suitable for SSR frameworks when the same cookie is read to initialize the root HTML attribute. For a client-only app, use `storage="localStorage"`. To disable persistence, use `storage="none"`.
 
-For SSR, read the saved preference in the server request and pass it as `initialTheme` to prevent a first-render theme mismatch. See [Installation](./docs/installation.md).
+For SSR, the application must set `data-theme` on its root HTML element from the validated saved cookie during server rendering. Passing `initialTheme` to the provider initializes React state but does not set the root HTML attribute in the server-rendered markup. See [Installation](./docs/installation.md).
 
 ## Optional next-themes integration
 
 Apps already using `next-themes` can import a light/dark toggle from its separate optional entry point:
 
 ```tsx
-import { NextThemeModeToggle } from '@godtech-ctl-create/abe-techlab-design-system/next-themes';
+import { NextThemeModeToggle } from '@abe-techlab/abe-techlab-design-system/next-themes';
 
 export function AppearanceSettings() {
   return <NextThemeModeToggle />;
