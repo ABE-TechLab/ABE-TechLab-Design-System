@@ -2,12 +2,12 @@
 
 ## Package registry access
 
-The package is private and is intended to be installed from GitHub Packages. Follow GitHub's guidance for a classic personal access token with package read access or another credential supported by your organization. The identity installing the package must have access to this private repository/package.
+The package is intended to be installed from GitHub Packages. Repository visibility and package visibility are separate settings: check the published package's access policy before adoption. If the package is private, the installing identity must have read access through a supported GitHub Packages credential.
 
 In the consuming repository, configure a local `.npmrc`:
 
 ```ini
-@godtech-ctl-create:registry=https://npm.pkg.github.com
+@abe-techlab:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken=${GITHUB_PACKAGES_TOKEN}
 ```
 
@@ -18,7 +18,7 @@ Set `GITHUB_PACKAGES_TOKEN` in the shell or CI secret environment. Add `.npmrc` 
 Only use a version that exists in GitHub Packages:
 
 ```bash
-npm install @godtech-ctl-create/abe-techlab-design-system@0.1.0
+npm install @abe-techlab/abe-techlab-design-system@0.1.0
 ```
 
 ## Import CSS
@@ -27,7 +27,7 @@ For Tailwind CSS v4:
 
 ```css
 @import 'tailwindcss';
-@import '@godtech-ctl-create/abe-techlab-design-system/styles.css';
+@import '@abe-techlab/abe-techlab-design-system/styles.css';
 ```
 
 The application still owns global resets, layout CSS, component styles, and Tailwind configuration. Import the shared stylesheet once in its root global CSS file.
@@ -48,7 +48,7 @@ Available IDs are listed in `styles/themes.json`. The dark token set is applied 
 import {
   ActiveThemeProvider,
   ThemeSelector
-} from '@godtech-ctl-create/abe-techlab-design-system/react';
+} from '@abe-techlab/abe-techlab-design-system/react';
 
 export function ThemeSettings({ initialTheme = 'vercel' }) {
   return (
@@ -67,7 +67,7 @@ The selector uses native HTML elements and can be styled with `labelClassName` a
 - `storage="localStorage"`: saves the palette in browser local storage under `active_theme`.
 - `storage="none"`: does not persist the choice.
 
-For server rendering, read the cookie using your framework's request API and pass its validated value as `initialTheme`. This lets the server render the correct `data-theme` from the start. The provider validates values against the theme catalog and will not apply unsupported IDs.
+For server rendering, read and validate the cookie using your framework's request API, then set `data-theme` on the root HTML element in the server-rendered markup. Also pass that value as `initialTheme` to `ActiveThemeProvider`. The provider validates values against the theme catalog, but it does not render or set the root HTML attribute on the server; the app's root layout must do that to avoid a first-paint flash.
 
 The provider controls the visual palette only. It intentionally does not override your app's light/dark mode system.
 
@@ -76,7 +76,7 @@ The provider controls the visual palette only. It intentionally does not overrid
 If the application already depends on `next-themes`, it can use:
 
 ```tsx
-import { NextThemeModeToggle } from '@godtech-ctl-create/abe-techlab-design-system/next-themes';
+import { NextThemeModeToggle } from '@abe-techlab/abe-techlab-design-system/next-themes';
 
 <NextThemeModeToggle />
 ```

@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: 22
           registry-url: https://npm.pkg.github.com
-          scope: '@godtech-ctl-create'
+          scope: '@abe-techlab'
       - name: Install package dependencies
         run: npm install --no-audit --no-fund
       - name: Ensure tag matches package version

@@ -1,2 +1,2 @@
-@godtech-ctl-create:registry=https://npm.pkg.github.com
+@abe-techlab:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken=${GITHUB_PACKAGES_TOKEN}

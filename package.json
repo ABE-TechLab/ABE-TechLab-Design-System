@@ -1,5 +1,5 @@
 {
-  "name": "@godtech-ctl-create/abe-techlab-design-system",
+  "name": "@abe-techlab/abe-techlab-design-system",
   "version": "0.1.0",
   "description": "Shared CSS design tokens and theme controls for ABE TechLab products.",
   "license": "MIT",
