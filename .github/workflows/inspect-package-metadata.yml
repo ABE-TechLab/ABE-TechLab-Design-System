@@ -1,0 +1,37 @@
+name: Inspect published package metadata
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/inspect-package-metadata.yml'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Published package version to inspect"
+        required: true
+        default: "0.1.0"
+        type: string
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Node.js and GitHub Packages registry
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://npm.pkg.github.com
+          scope: '@abe-techlab'
+
+      - name: Print registry integrity metadata
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PACKAGE_VERSION: ${{ inputs.version || '0.1.0' }}
+        run: |
+          set -euo pipefail
+          npm view "@abe-techlab/abe-techlab-design-system@${PACKAGE_VERSION}" dist --json
