@@ -1,11 +1,12 @@
 {
   "name": "@godtech-ctl-create/abe-techlab-design-system",
   "version": "0.1.0",
-  "description": "Shared CSS design tokens and theme palettes for ABE TechLab products.",
+  "description": "Shared CSS design tokens and theme controls for ABE TechLab products.",
   "license": "MIT",
   "type": "module",
   "files": [
     "styles",
+    "dist",
     "README.md",
     "LICENSE",
     "NOTICE.md",
@@ -14,14 +15,49 @@
   "sideEffects": [
     "**/*.css"
   ],
+  "main": "./dist/react.cjs",
+  "module": "./dist/react.js",
+  "types": "./dist/react.d.ts",
   "exports": {
+    ".": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.js",
+      "require": "./dist/react.cjs"
+    },
     "./styles.css": "./styles/index.css",
     "./styles/*": "./styles/*",
-    "./themes.json": "./styles/themes.json"
+    "./themes.json": "./styles/themes.json",
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.js",
+      "require": "./dist/react.cjs"
+    },
+    "./next-themes": {
+      "types": "./dist/next-themes.d.ts",
+      "import": "./dist/next-themes.js",
+      "require": "./dist/next-themes.cjs"
+    }
   },
   "scripts": {
-    "check": "node scripts/check-themes.mjs",
-    "prepack": "npm run check"
+    "build": "tsup",
+    "check": "node scripts/check-themes.mjs && tsc --noEmit",
+    "prepack": "npm run check && npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=18.2.0",
+    "next-themes": ">=0.3.0"
+  },
+  "peerDependenciesMeta": {
+    "next-themes": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "next-themes": "^0.4.6",
+    "react": "^19.2.4",
+    "tsup": "^8.5.0",
+    "typescript": "^5.7.2"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
@@ -31,6 +67,7 @@
     "design-system",
     "tailwindcss",
     "themes",
-    "design-tokens"
+    "design-tokens",
+    "react"
   ]
 }
