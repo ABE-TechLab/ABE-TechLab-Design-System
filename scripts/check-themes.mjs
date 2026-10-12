@@ -48,6 +48,14 @@ if (JSON.stringify(configuredIds) !== JSON.stringify(catalogIds)) {
   errors.push('React theme configuration does not match styles/themes.json (IDs or order differ).');
 }
 
+if (!packageJson.name?.startsWith('@abe-techlab/')) {
+  errors.push('The published package name must use the @abe-techlab organization scope.');
+}
+
+if (packageJson.publishConfig?.registry !== 'https://npm.pkg.github.com') {
+  errors.push('The package must publish to the GitHub Packages npm registry.');
+}
+
 if (!packageJson.exports?.['./react'] || !packageJson.exports?.['./next-themes']) {
   errors.push('Expected both ./react and ./next-themes package exports.');
 }
