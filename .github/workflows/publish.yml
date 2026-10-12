@@ -21,11 +21,22 @@ jobs:
           node-version: 22
           registry-url: https://npm.pkg.github.com
           scope: '@godtech-ctl-create'
-      - name: Verify package before publishing
+      - name: Install package dependencies
+        run: npm install --no-audit --no-fund
+      - name: Ensure tag matches package version
+        shell: bash
+        run: |
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          PACKAGE_VERSION="$(node -p "require('./package.json').version")"
+          if [ "$TAG_VERSION" != "$PACKAGE_VERSION" ]; then
+            echo "Tag v$TAG_VERSION does not match package version $PACKAGE_VERSION"
+            exit 1
+          fi
+      - name: Validate and build
         run: |
           npm run check
-          npm pack --dry-run
-      - name: Publish package
+          npm run build
+      - name: Publish to GitHub Packages
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
